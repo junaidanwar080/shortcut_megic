@@ -1,0 +1,19 @@
+<table class="table table-hover ">
+    <thead class="table-secondary ">
+        <tr>
+            <th>Sr.</th>
+            <th>Shortcut</th>
+            <th>Shortcut Tex</th>
+            <th>Created On</th>
+    </thead>
+    <tbody class="table-sm ">
+        {% for i in shortcut_select %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Name}}</td>
+            <td>{{i.Description|capfirst}}</td>
+            <td>{{i.Created_on|date:'d-m-Y'}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

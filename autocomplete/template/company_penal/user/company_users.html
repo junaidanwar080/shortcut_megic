@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Users</title>
+</head>
+
+<body>
+	{% include 'Company_penal/Company_NavBar.html' %}
+	{% include './user_modals.html' %}
+
+
+
+	<div class="container">
+		
+		<div style="margin-left: 900px; margin-top: 15px;">
+			<a data-toggle="modal" data-target="#user_profile" class="btn btn-sm btn-primary">Add User</a>
+		</div>
+		<div id="msg" class="text-center" style="border-radius: 5px; "></div>
+		<!-- table start -->
+		<div class="card mt-4">
+			<div class="card-header text-center">All Users</div>
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Sr</th>
+							<th scope="col">User Name</th>
+							<th scope="col">Email</th>
+
+							<th scope="col">Type</th>
+							<th scope="col">Created On</th>
+							<th scope="col">Actions</th>
+
+						</tr>
+					</thead>
+					<tbody id="all_profiles">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- table end  -->
+	</div>
+
+	<!-- User Profile Insert Modal Start -->
+	<div class="modal fade" id="user_profile">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Add User</h4>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="insert-reply"></div>
+					<form id="user_form">
+						{% csrf_token %}
+						<div class="from-group" hidden>
+							<label for="user_id" class="form-label">User id<span
+									style="color:red"><b>*</b></span></label>
+							<input type="text" class="form-control" name="user_id" id="user_id" value="{{user.id}}">
+						</div>
+						<div class="from-group">
+							<label for="user_name" class="form-label">User Name<span
+									style="color:red"><b>*</b></span></label>
+							<input type="text" class="form-control" name="user_name" id="user_name">
+						</div>
+						<div class="from-group">
+							<label for="Email">Email<span style="color:red"><b>*</b></span></label>
+							<input type="text" class="form-control" id="Email" name="Email">
+						</div>
+						<div class="from-group">
+							<label for="Password" class="form-label">Password<span
+									style="color:red"><b>*</b></span></label>
+							<input type="password" class="form-control" name="Password" id="Password">
+						</div>
+						<div class="from-group">
+							<label for="Confirm_Password" class="form-label">Confirm Password<span
+									style="color:red"><b>*</b></span></label>
+							<input type="password" class="form-control" name="Confirm_Password" id="Confirm_Password">
+						</div>
+						
+
+					</form>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" id="btn_save_user_profile">Save</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Party Profile Insert Modal End -->
+
+
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$.ajaxSetup({
+				data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+			});
+
+			// Delete user
+			$(document).on("click", ".user_delete", function () {
+				let id = $(this).attr("id");
+				let is_active = $(this).attr("is_active_user");
+				if (is_active == "True") {
+					is_active = 0
+				} else {
+					is_active = 1
+				}
+				$.ajax({
+					url: "user_disable/" + id,
+					type: "POST",
+					data: { is_active: is_active },
+					success: function () {
+						select_all_users();
+					}
+				});
+			});
+
+
+			// insert vendors
+			//-------------------------------------------------------
+			$("#btn_save_user_profile").on("click", function () {
+				let user_form = $("#user_form").serialize();
+				$.ajax({
+					url: 'insert_company_user',
+					type: 'post',
+					data: user_form,
+					success: function (message) {
+						console.log(message)
+						if (message == "New User Created") {
+							$("#msg").html(message);
+							$("#msg").css('background-color', '#b5e7a0');
+							$('#user_profile').modal('hide');
+							select_all_users();
+						} else {
+							$("#insert-reply").html(message);
+							$("#insert-reply").css('background-color', '#eca1a6');
+						}
+					}
+				});
+			});
+
+			select_all_users();
+		});
+
+		// select customers 
+		const select_all_users = () => {
+			$.ajax({
+				url: 'select_company_users',
+				type: 'post',
+				success: function (data) {
+					$("#all_profiles").html(data);
+				}
+			});
+		}
+	</script>
+
+</body>
+
+</html>

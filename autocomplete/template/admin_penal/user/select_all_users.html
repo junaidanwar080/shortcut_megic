@@ -1,0 +1,27 @@
+<table class="table table-hover">
+    <tbody>
+        {% for i in User_table %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.username}}</td>
+            <td>{{i.user.email}}</td>
+            
+            {% if i.user_type == '2' %}
+                <td>Corporate</td>
+            {% elif i.user_type == '3' %}
+                <td>Individual</td>
+            {%else%}
+                <td>Global</td>
+            {% endif %}
+            <td>{{i.user.date_joined|date:'d-m-Y'}}</td>
+            {% if i.user.is_active is False %} 
+                <td><button  id="{{ i.user.id }}" class="btn btn-danger btn-sm user_delete" is_active_user="{{ i.user.is_active }}" >Activate</button></td>
+            {% else %}
+                <td><button  id="{{ i.user.id }}" class="btn btn-primary btn-sm user_delete" is_active_user="{{ i.user.is_active }}">In Activate</button></td>
+            {% endif %}
+            <td>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

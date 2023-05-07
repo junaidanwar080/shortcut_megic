@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div id="msg"></div>
+
+    <div style="margin-top: 10px; ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="msg"></div>
+                    <div class="card">
+                        <div class="card-header" style="background: #59bd8e;   ">
+                            <h4>Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="insert-reply"></div>
+                            <form id="user_form">
+                                {% csrf_token %}
+                                <div class="from-group" hidden>
+                                    <label for="user_id" class="form-label">User id<span
+                                            style="color:red"><b>*</b></span></label>
+                                    <input type="text" class="form-control" name="user_id" id="user_id" value="0">
+                                </div>
+                                <div class="from-group">
+                                    <label for="user_name" class="form-label">User Name<span
+                                            style="color:red"><b>*</b></span></label>
+                                    <input type="text" class="form-control" name="user_name" id="user_name"
+                                        autocomplete="off">
+                                </div>
+                                <div class="from-group">
+                                    <label for="Email">Email<span style="color:red"><b>*</b></span></label>
+                                    <input type="text" class="form-control" id="Email" name="Email" autocomplete="off">
+                                </div>
+                                <div class="from-group">
+                                    <label for="Password" class="form-label">Password<span
+                                            style="color:red"><b>*</b></span></label>
+                                    <input type="password" class="form-control" name="Password" id="Password"
+                                        autocomplete="off">
+                                </div>
+                                <div class="from-group">
+                                    <label for="Confirm_Password" class="form-label">Confirm Password<span
+                                            style="color:red"><b>*</b></span></label>
+                                    <input type="password" class="form-control" name="Confirm_Password"
+                                        id="Confirm_Password" autocomplete="off">
+                                </div>
+                                <div class="from-group">
+                                    <p>Please select User</p>
+                                    <input type="radio" id="defaule" name="user_type" value="0" checked="checked"
+                                        hidden>
+                                    <label for="defaule" hidden>Default User</label>
+                                    <input type="radio" id="Global" name="user_type" value="1" hidden>
+                                    <label for="staff" hidden>Global</label>
+                                    <input type="radio" id="Enterprise" name="user_type" value="2">
+                                    <label for="user">Enterprise</label><br>
+                                    <input type="radio" id="Individual" name="user_type" value="3">
+                                    <label for="user">Individual</label><br>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="btn_save_user_profile">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajaxSetup({
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+
+
+
+            // insert vendors
+            //-------------------------------------------------------
+            $("#btn_save_user_profile").on("click", function () {
+                let user_form = $("#user_form").serialize();
+                $.ajax({
+                    url: 'insert_user',
+                    type: 'post',
+                    data: user_form,
+                    success: function (message) {
+                        console.log(message)
+                        if (message == "New User Created") {
+                            $("#msg").html("Your Request is Send to Admin for Approvel");
+                            $("#msg").css('background-color', '#b5e7a0');
+                            $("#user_form")[0].reset();
+                        } else {
+                            $("#insert-reply").html(message);
+                            $("#insert-reply").css('background-color', '#eca1a6');
+                        }
+                    }
+                });
+            });
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

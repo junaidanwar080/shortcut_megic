@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Users</title>
+</head>
+
+<body>
+    {% include '../admin_navbar.html' %}
+
+    <div class="container">
+
+        <div id="msg" class="text-center" style="border-radius: 5px; "></div>
+        <!-- table start -->
+        <div class="card mt-4">
+            <div class="card-header text-center"><b>Office 365 Email Group Manager</b></div>
+            <div class="card-body">
+                <form>
+                    <label for="domain_name" style="margin-left: 750px; ">Domain Name</label>
+                    <input type="text" name="domain_name" id="domain_name">
+                    <div class="row">
+                        <div class="">
+                            <label for="domain_name">Ship Name</label>
+                            <input type="text" name="domain_name" style="width: 150px; " id="domain_name">
+                        </div>
+                        <div class="" style=" margin-left:30px ">
+                            <label for="domain_name">Fleet Mnemonics</label>
+                            <input type="text" name="domain_name" style="width: 75px; " id="domain_name">
+                        </div>
+                        <div class="" style=" margin-left:30px ">
+                            <label for="domain_name">Ship Mnemonics</label>
+                            <input type="text" name="domain_name" style="width: 75px; margin-right:10px "
+                                id="domain_name">
+                        </div>
+                        <div class="">
+                            <input type="text" name="domain_name" id="domain_name" value="BROWSE (OPTIONAL)">
+                            <input type="button" name="domain_name" id="domain_name" value="Reset">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;">Owner 1 Email:</label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup">
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;">Owner 2 Email:</label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup">
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;">Owner 3 Email:</label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup">
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;">Owner 4 Email:</label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup">
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 01:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 02:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 03:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 04:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 05:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 06:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 07:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 08:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 09:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Group 10:</b></label>
+                        </div>
+                        <div class="col-5" style="padding-right:20px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-5" style="margin-left: 0px;">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px;" readonly>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" style="width: 90px; margin-left: 10px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2 ">
+                            <label class="form-control" style="border: none;"><b>Comments:</b></label>
+                        </div>
+                        <div class="col-7">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroup">
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="margin-left: 0px;">
+                            <div class="input-group ">
+                                <input class="" type="checkbox" id="">
+                                <label class="form-control" style="border: none;">
+                                  Externally Visible
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- table end  -->
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+
+</body>
+
+</html>

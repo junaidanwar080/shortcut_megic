@@ -1,0 +1,33 @@
+<table class="table table-hover ">
+    <thead class="table-secondary ">
+        <tr>
+            <th>Sr.</th>
+            <th>Shortcut</th>
+            <th>Shortcut Tex</th>
+            <th>Created On</th>
+            <th>Created By</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-sm ">
+
+        {% for i in shortcut_select %}
+
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Name}}</td>
+            <td>{{i.Description|capfirst}}</td>
+            <td>{{i.Created_on|date:'d-m-Y'}}</td>
+            <td>ABC</td>
+            <td><button id="{{ i.Shortcut_id }}" class="btn btn-primary btn-sm update_shortcut" data-toggle="modal" data-target="#update_model">Edit</button>
+                <button id="{{ i.Shortcut_id }}" class="btn btn-danger btn-sm disable_shortcut" data-toggle="modal">Disable</button></td>
+            
+
+        </tr>
+
+        {% endfor %}
+
+
+
+    </tbody>
+</table>

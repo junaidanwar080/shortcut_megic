@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Personal Shortcuts</title>
+</head>
+
+<body>
+    {% include 'Individual_penal/Individual_NavBar.html' %}
+    {% include './PersonalShortcut_model.html' %}
+    <div style="margin-left: 400px; margin-top: 10px;">
+        <h2>Personal Shortcuts</h2>
+    </div>
+    <hr>
+
+    <div style="margin-left: 100px; margin-top: 10px;">
+        <label for="">Shortcut</label>
+        <input style="margin-left: 7px;" class="" id="search">
+        <!-- Add New Account Button -->
+        
+        <a href="/apply_individual_personal_shortcut" class="btn btn-sm btn-primary" style="margin-left:400px;">Apply Personal
+            Shortcuts</a>
+        <button style="margin-left: 10px;" class="btn btn-sm btn-success" id="btn_save" data-toggle="modal"
+            data-target="#add_model">Add Personal Shortcut</button>
+    </div>
+    <div id="all_accounts" style="margin-left: 100px; margin-right: 100px; margin-top: 20px;">
+
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            // update load button
+            $(document).on("click", ".update_shortcut", function () {
+                var shortcut_id = $(this).attr('id');
+                //alert(account_code);
+                $.ajax({
+                    url: 'shortcut_load_for_update/' + shortcut_id,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data)
+                        $("#edit_Shortcut_id").val(data.Shortcut_id)
+                        $('#edit_Name').val(data.Name)
+                        $('#edit_Description').val(data.Description)
+
+                    }
+                });
+            });
+
+            // insert message id become empty
+            $(document).on("click", "#btn_save", function () {
+                $("#all-reply").empty();
+            });
+            // update message id become empty
+            $(document).on("click", ".update_btn", function () {
+                $("#edit_reply").empty();
+            });
+            // just insert Account data
+            $("#just_insert").on("click", function () {
+                var account_form = $("#accounts_data").serialize();
+                $.ajax({
+                    url: "personal_shortcut_insert",
+                    type: "POST",
+                    data: account_form,
+                    success: function (data) {
+                        if (data == "Shortcut Created") {
+                            $("#all-reply").empty();
+                            $("#all-reply").append('<div class="alert alert-success text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                            dept_heads();
+                            $("#accounts_data")[0].reset();
+                        } else {
+
+                            $("#all-reply").empty();
+                            $("#all-reply").append('<div class="alert alert-danger text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                        }
+                    }
+                });
+            });
+            // insert and close Account data
+            $("#insert_and_close").on("click", function () {
+                var account_form = $("#accounts_data").serialize();
+                $.ajax({
+                    url: "personal_shortcut_insert",
+                    type: "POST",
+                    data: account_form,
+                    success: function (data) {
+                        if (data == "Shortcut Created") {
+                            $('#add_model').modal('hide');
+                            $("#all-reply").empty();
+                            $("#all-reply").append('<div class="alert alert-success text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                            dept_heads();
+                            $("#accounts_data")[0].reset();
+                        } else {
+                            $("#all-reply").empty();
+                            $("#all-reply").append('<div class="alert alert-danger text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                        }
+                    }
+                });
+            });
+            // just Update Account data
+            $("#just_update").on("click", function () {
+                var account_form = $("#edit_accounts_data").serialize();
+                $.ajax({
+                    url: "shortcut_update",
+                    type: "POST",
+                    data: account_form,
+                    success: function (data) {
+                        if (data == "Shortcut Updated") {
+                            $("#edit_reply").empty();
+                            $("#edit_reply").append('<div class="alert alert-success text-center" role="alert">' + data + '</div>');
+                            $("#edit_reply").fadeIn();
+                            $("#edit_reply").fadeOut(3000).delay(1000).hide(100);
+                            dept_heads();
+                        } else {
+                            $("#edit_reply").empty();
+                            $("#edit_reply").append('<div class="alert alert-danger text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                        }
+                    }
+                });
+            });
+            // Update and close Account Modal
+            $("#update_and_close").on("click", function () {
+                var account_form = $("#edit_accounts_data").serialize();
+                $.ajax({
+                    url: "shortcut_update",
+                    type: "POST",
+                    data: account_form,
+                    success: function (data) {
+                        if (data == "Shortcut Updated") {
+                            $('#update_model').modal('hide');
+                            $("#edit_reply").empty();
+                            $("#edit_reply").append('<div class="alert alert-success text-center" role="alert">' + data + '</div>');
+                            $("#edit_reply").fadeIn();
+                            $("#edit_reply").fadeOut(3000).delay(1000).hide(100);
+                            dept_heads();
+                        } else {
+                            $("#edit_reply").empty();
+                            $("#edit_reply").append('<div class="alert alert-danger text-center" role="alert">' + data + '</div>');
+                            $("#all-reply").fadeIn();
+                            $("#all-reply").fadeOut(3000).delay(1000).hide(100);
+                        }
+                    }
+                });
+            });
+            $(document).on("keyup", "#search", function () {
+                let shortcut = $("#search").val();
+                $.ajax({
+                    url: "personal_shortcut_search",
+                    type: 'POST',
+                    data: { shortcut: shortcut },
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#all_accounts").html(data);
+                        //dept_heads();
+                    }
+                });
+            });
+
+            $(document).on("click", ".disable_shortcut", function () {
+                let id = $(this).attr('id');
+                $.ajax({
+                    url: "shortcut_disable",
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#all_accounts").html(data);
+                        dept_heads();
+                    }
+                });
+            });
+
+            dept_heads();
+
+        });
+
+        // Chart of accounts call
+        function dept_heads() {
+            $.ajax({
+                url: "personal_shortcut_select",
+                type: 'POST',
+                //dataType: 'JSON',
+                success: function (data) {
+                    console.log(data);
+
+                    $("#all_accounts").html(data);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

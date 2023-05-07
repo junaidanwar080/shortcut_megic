@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Apply Personal Shortcut</title>
+</head>
+<style>
+    #inputid {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+</style>
+
+<body>
+    {% include 'Company_penal/Company_NavBar.html' %}
+    <div style="margin-left:900px; margin-top:20px;">
+        <a href="/apply_company_globle_shortcut_page" class="btn btn-sm btn-primary">Apply Global Shortcuts</a>
+        <a href="/apply_company_personal_shortcut_page" class="btn btn-sm btn-primary" style="margin-left:10px;">Apply Personal Shortcuts</a>
+    </div>
+    <!-- Ledger Equity Insert Modal Start -->
+    <div>
+        <div class="modal-dialog ">
+            <div class="modal-content " style="width: 1100px; margin-left: -300px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title ">Apply Personal Shortcuts </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+
+                        <input type="text" name="" id="row_counter" value="1" hidden>
+                        <div class="form-group">
+                            <table class="table table-borderless table-sm" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>Shortcut</th>
+                                        <th>Shortcut Text</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_body">
+                                    <tr>
+                                        <td>
+                                            <input autocomplete="off" list="browsers"
+                                                onKeyup="get_name('browser_0' , 'account_name_0')" name="account_code[]"
+                                                id="browser_0" style="width:300px" class="form-control account_code"
+                                                placeholder="Search Shortcut here">
+                                        </td>
+                                        <td>
+                                            <input name="account[]" id="account_name_0"
+                                                onClick="get_name_val('account_name_0')" placeholder=""
+                                                class="form-control account"
+                                                style="border: none; outline: none; background-color: transparent; box-shadow: none; border-radius: 0;">
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <a class="btn btn-primary add_row" id="add_new_row">Search Shortcut</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+
+        $(document).on("click", "#add_new_row", function () {
+            var last_counter = $("#row_counter").val();
+            var account_code_id = "'browser_" + last_counter + "'";
+            var account_name_id = "'account_name_" + last_counter + "'";
+
+            $("#table_id tbody").append('<tr><td><div class="form-comtrol"><input autocomplete="off" style="width:300px" list="browsers" onKeyup="get_name(' + account_code_id + ' , ' + account_name_id + ')" name="account_code[]" id="browser_' + last_counter + '" placeholder="Search Shortcut here" class="form-control account_code"></div></td><td ><input name="account[]" id="account_name_' + last_counter + '"  onclick="get_name_val(' + account_name_id + ')" placeholder="" style="border: none; outline: none; background-color: transparent; box-shadow: none; border-radius: 0;" class="form-control account"></td> <td><a href="javascript:void(0)" class="remove_row"><strong> Delete </strong></a></td></tr>');
+            last_counter++;
+            $("#row_counter").val(last_counter);
+        });
+
+
+
+        $(document).on('click', '.remove_row', function () {
+            $(this).parents('tr').remove();
+        });
+
+
+        function get_name_val(account_name_id) {
+            var name = $('#' + account_name_id).val();
+
+
+            if (name != "") {
+                var last_counter = $("#row_counter").val();
+                var account_code_id = "'browser_" + last_counter + "'";
+                var account_name_id = "'account_name_" + last_counter + "'";
+
+                $("#table_id tbody").append('<tr><td><div class="form-comtrol"><input autocomplete="off" style="width:300px" list="browsers" onKeyup="get_name(' + account_code_id + ' , ' + account_name_id + ')" name="account_code[]" id="browser_' + last_counter + '" placeholder="Search Shortcut here" class="form-control account_code"></div></td><td ><input name="account[]" id="account_name_' + last_counter + '"  onClick="get_name_val(' + account_name_id + ')" placeholder="" style="border: none; outline: none; background-color: transparent; box-shadow: none; border-radius: 0;" class="form-control account"></td> <td><a href="javascript:void(0)" class="remove_row"><strong> Delete </strong></a></td></tr>');
+                last_counter++;
+                $("#row_counter").val(last_counter);
+            }
+        }
+
+        $(document).ready(function () {
+            // Attach the keyup event handler to the last input field with class "last-input"
+            $("#jkjaccount").on("click", function () {
+
+            });
+        });
+
+
+
+        function get_name(account_code_id, account_name_id) {
+            var item_id = $('#' + account_code_id).val();
+
+            $.ajax({
+                url: "apply_company_personal_shortcut",
+                type: "POST",
+                dataType: "JSON",
+                data: { item_id: item_id },
+                success: function (item_data) {
+                    console.log(item_data);
+                    $("#" + account_name_id).val(item_data.Description);
+                    //let name_s = $("#" + account_name_id).val();
+                    //if(name_s == ""){}else{
+                    //alert(account_name_id)
+                    //$(document).on("click", "#add_new_row", function () {
+
+                    //});
+                    //}
+                }
+            });
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

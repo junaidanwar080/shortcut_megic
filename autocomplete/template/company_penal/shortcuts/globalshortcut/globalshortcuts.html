@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Global Shortcuts</title>
+</head>
+
+<body>
+    {% include 'Company_penal/Company_NavBar.html' %}
+    <div style="margin-left: 400px; margin-top: 10px;">
+        <h2>Globle Shortcuts</h2>
+    </div>
+    <hr>
+    <div style="margin-left: 100px; margin-top: 10px;">
+        <label for="">Globle Shortcut</label>
+        <input style="margin-left: 7px;" class="" id="search" >
+        <!-- Add New Account Button -->
+        <a href="/apply_company_globle_shortcut_page" class="btn btn-sm btn-primary"  style="margin-left:420px;">Apply Global Shortcuts</a>
+        <a href="/apply_company_personal_shortcut_page" class="btn btn-sm btn-primary" style="margin-left:10px;">Apply Personal Shortcuts</a>
+        
+    </div>
+    <div id="all_accounts" style="margin-left: 100px; margin-right: 100px; margin-top: 20px;"></div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+				data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+			});
+            // Searc Gloabal Shortcut 
+            $(document).on("keyup","#search",function(){
+                let shortcut = $("#search").val();
+                $.ajax({
+                    url: "company_globle_shortcut_search",
+                    type: 'POST',
+                    data: {shortcut:shortcut},
+                    success: function (data) {
+                         $("#all_accounts").html(data);
+                    }
+                });
+            });
+
+            $(document).on("click",".disable_shortcut",function(){
+                let id = $(this).attr('id');
+                $.ajax({
+                    url: "shortcut_disable",
+                    type: 'POST',
+                    data: {id:id},
+                    success: function (data) {
+                         $("#all_accounts").html(data);
+                         dept_heads();
+                    }
+                });
+            });
+            Global_Shortcuts();
+        });
+
+        // Global_Shortcuts
+        function Global_Shortcuts() {
+            $.ajax({
+                url: "company_globle_shortcut_select",
+                type: 'POST',
+                success: function (data) {
+                    console.log(data);
+                    
+                     $("#all_accounts").html(data);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
